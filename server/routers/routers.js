@@ -17,13 +17,34 @@ const openaiApiController = require('../controllers/openaiController');
 // });
 
 router.post(
-  '/userquery', userQueryController.parseQuery, openaiApiController.userQuery, googleApiController.getEvents, openaiApiController.createResponse,
-  (req, res) => {
-    return res
-      .status(200)
-      .send(res.locals.gptFields)
-  }
+	'/userquery',
+	userQueryController.parseQuery,
+	openaiApiController.userQuery,
+	googleApiController.getEvents,
+	openaiApiController.createResponse,
+	(req, res) => {
+		return res.status(200).send(res.locals.gptFields);
+	}
 );
 
+router.post(
+	'/userMusicQuery',
+	userQueryController.parseQuery,
+	googleApiController.getEvents,
+	openaiApiController.createMusicResponse,
+	(req, res) => {
+		return res.status(200).send(res.locals.gptMusicFields);
+	}
+);
+
+router.post(
+	'/userFoodQuery',
+	userQueryController.parseQuery,
+	googleApiController.getEvents,
+	openaiApiController.createFoodResponse,
+	(req, res) => {
+		// return res.status(200).send(res.locals.gptFoodFields);
+	}
+);
 //Export the router---------------------------
 module.exports = router;

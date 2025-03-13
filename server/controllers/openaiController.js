@@ -27,7 +27,7 @@ openaiApiController.userQuery = async (req, res, next) => {
       model: 'gpt-4o-mini',
       store: true,
       messages: [{ role: 'user', content: prompt }],
-      temperature: 0.2, // temperature is 'sampling temperature' (between 0 and 2)- higher values like 0.8 produce more random outputs, while lower values like 0.2 make outputs more focused and deterministic.
+      temperature: 0, // temperature is 'sampling temperature' (between 0 and 2)- higher values like 0.8 produce more random outputs, while lower values like 0.2 make outputs more focused and deterministic.
     });
     // console.log(result.choices[0].message.content);
     res.locals.gptResponse = result.choices[0].message.content;
@@ -52,7 +52,8 @@ openaiApiController.createResponse = async (req, res, next) => {
     places.formattedAddress,
     places.priceLevel,
     places.rating,
-    places.types
+    places.types,
+    places.googleMapsUri
     
     You will be given a user query.
     Your objective is to decide the 3 best activities to recommend based on the user query.
@@ -60,7 +61,6 @@ openaiApiController.createResponse = async (req, res, next) => {
     Your response must be an array of objects.
     Your response must maintain the same format that you were given, and leave the top 3 objects within the array that best align with the user query.
     The keys in your response should not be in quotes, example: places.rating: 4.5
-    The places.photos should contain the links of urls to the photos
     array of objects: ${googleResponse}
     user query: ${gptResponse}
     `;

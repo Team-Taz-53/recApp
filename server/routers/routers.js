@@ -21,7 +21,7 @@ router.post(
   (req, res) => {
     return res
       .status(200)
-      .json({ message: 'Query received', userQuery: res.locals.userQuery });
+      .send(res.locals.gptFields)
   }
 );
 

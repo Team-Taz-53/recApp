@@ -17,7 +17,7 @@ googleApiController.getEvents = async (req, res, next) => {
       headers: {
         'Content-Type': 'application/json',
         'X-Goog-Api-Key': process.env.GOOGLE_API_KEY,
-        'X-Goog-FieldMask': `places.displayName,places.formattedAddress,places.priceLevel,places.rating,places.types`,
+        'X-Goog-FieldMask': `places.displayName,places.formattedAddress,places.priceLevel,places.rating,places.types,places.googleMapsUri`,
       },
       body: JSON.stringify({ textQuery: gptResponse }),
     });

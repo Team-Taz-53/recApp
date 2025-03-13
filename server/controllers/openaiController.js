@@ -76,7 +76,7 @@ openaiApiController.createResponse = async (req, res, next) => {
     googleMapsUri: 'https://maps.google.com/?cid=12957464324064300201',
     priceLevel: 'PRICE_LEVEL_INEXPENSIVE',
     displayName: { text: 'Gnarly Barley', languageCode: 'en' }
-    photoUrl: 'https://places.googleapis.com/v1/places/ChIJH5pPk-h854gRqUymsSYp0rM/photos/
+    photoUrl: 'https://places.googleapis.com/v1/places/ChIJH5pPk-h854gRqUymsSYp0rM/photos/'
     }
   ]
   You will be given a user query.

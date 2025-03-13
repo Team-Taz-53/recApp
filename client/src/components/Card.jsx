@@ -3,7 +3,7 @@ export const Card = ({label,onClick, className})=>{
       <div className={`${className}`}>
         <section  className={`${className} card`} onClick={onClick}>
           <div className="card-img">
-            <div className="card-label">
+            <div className="card-overlay">
               <h2>{label}</h2>
             </div>
           </div>

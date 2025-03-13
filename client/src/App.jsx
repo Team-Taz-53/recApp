@@ -1,33 +1,71 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { Button } from './components/Button'
+import {Input} from './components/Input'
+import { Card } from './components/Card'
 function App() {
-  const [count, setCount] = useState(0)
+  //get the value of the query from the query input
+  const [queryValue, setQueryValue]= useState('')
+
+  //get the value of the location from the location input
+  const [locationValue, setlocationValue]= useState('')
+
+    //get the suggestion from the back-end
+    const [suggestions, setSuggestion]= useState([])
+
+  //Function to send the query and location to the backend
+  const handleClickQuery= async ()=>{
+  const response = await fetch(`http://localhost:3000/api/userquery`,{
+    method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({userQuery: queryValue, location: locationValue }),
+  } )
+  //Response returned from the back-end.
+  const data = await response.json();
+  setSuggestion(data)
+}
+console.log(suggestions)
+
+//Function to display AI suggestions
+const listOfSuggestions = () => {
+
+  return suggestions.map((suggestion, index) => (
+    <div key={index} className='suggestion-card'>
+      <img src="https://placehold.co/600x400" alt="Logo" />;
+      <div className="content-col">
+        <h3>{suggestions[index].displayName.text}</h3>
+        <p>{suggestions[index].formattedAddress}</p>
+        <p>{suggestions[index].rating}</p>
+        <a href={suggestions[index].googleMapsUri}>More</a>
+      </div>
+    </div>
+  ));
+};
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <main>
+      <div className='container'>
+        <section className="form-section">
+        <div className="form">
+        <Input placeholder="Enter mood..." setValue={setQueryValue}/>
+        <Input placeholder="Zip Code..." setValue={setlocationValue}/>
+        <Button label="click" onClick={()=>handleClickQuery()}/>
+        </div>
+        </section>
+       <section className="card-section">
+       <div className="card-grid">
+          <Card className="card-music" label="MUSIC"/>
+          <Card className="card-food"label="FOOD"/>
+          <Card className="card-events"label="EVENTS"/>
+        </div>
+       </section>
+        <section className='suggestion-section'>
+      {listOfSuggestions()}
+        </section>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </main>
     </>
   )
 }

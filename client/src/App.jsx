@@ -10,8 +10,16 @@ function App() {
   const [locationValue, setlocationValue]= useState('')
 
   //function fired off by the button
-const func=()=>{
-  return alert("working")
+const handleClickQuery= async ()=>{
+const response = await fetch(`http://localhost:3000/api/userquery`,{
+  method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({userQuery: queryValue, location: locationValue }),
+} )
+const data = await response.json();
+console.log(data)
 }
   return (
     <>
@@ -20,7 +28,7 @@ const func=()=>{
         <div className="form">
         <Input placeholder="Enter mood..." setValue={setQueryValue}/>
         <Input placeholder="Zip Code..." setValue={setlocationValue}/>
-        <Button label="click" onClick={func}/>
+        <Button label="click" onClick={handleClickQuery}/>
         </div>
         </div>
        <div className="card-section">

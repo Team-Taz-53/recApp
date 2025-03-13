@@ -111,21 +111,21 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--red-card);
   color: var(--text);
   cursor: pointer;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .card-music, .card-events, .card-food {
   border-radius: 0.9rem;
 }
 .card-music{
-  background-color: red;
-  border-radius: 0.9rem;
+  background: url("./assets/music.jpg")
 }
 .card-events{
-  background-color: blue;
-  border-radius: 0.9rem;
+  background: url("./assets/event.jpg")
 }
 .card-food{
-  background-color: yellow;
-  border-radius: 0.9rem;
+  background: url("./assets/food.jpg")
 }
 
 

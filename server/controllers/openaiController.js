@@ -42,12 +42,13 @@ openaiApiController.userQuery = async (req, res, next) => {
 openaiApiController.createResponse = async (req, res, next) => {
   try {
     const { googleResponse, gptResponse } = res.locals;
-    const jsonGoogleResponse = JSON.stringify(googleResponse)
+    const jsonGoogleResponse = JSON.stringify(googleResponse);
     const prompt = `
     You are an expert at using the Google Places API. 
     You are an expert at recommending activities.
     You will be given an array of objects.
     The format of the array of objects will be like:
+
     [
     {types: ['type 1','type 2']
     formattedAddress: 'address',
@@ -55,6 +56,7 @@ openaiApiController.createResponse = async (req, res, next) => {
     googleMapsUri: 'url'
     priceLevel: 'price level'
     displayName: { text: 'name', languageCode: 'language' }
+    photoUrl: 'url'
     }
   ]
 
@@ -74,6 +76,7 @@ openaiApiController.createResponse = async (req, res, next) => {
     googleMapsUri: 'https://maps.google.com/?cid=12957464324064300201',
     priceLevel: 'PRICE_LEVEL_INEXPENSIVE',
     displayName: { text: 'Gnarly Barley', languageCode: 'en' }
+    photoUrl: 'https://places.googleapis.com/v1/places/ChIJH5pPk-h854gRqUymsSYp0rM/photos/AUy1YQ2czxuxUI8GqmIheck3OdRwSTum9ghTQDRIUB4JLfomnkcRwh5vN14UU1-9lLA-6h4nS_CKIHge4DQa6xU1JCQgYxCdNEJR59k0nntF3aC9A37wbmmW39fhbJ9QmRzB3HLCzOSihHPU5xtGqNVIedaUqoffHW6dldPhpbkkO1fWnLD1QF0vXRaIsnigkroj1eJ11BWoVzYh8TkbiWStL9FffXHM16shuS5z41m69QIwSIyIFrQXnn8KM-7rZ-MSPgz4UtbstBEQEyeE1QaRV2XHOe8QAX3EHdTw5o3mu5CR1Q/media?maxWidthPx=400&key=AIzaSyBDxekdMhxPFM2nszecl3NjIPGFEXO9uVQ'
     }
   ]
   You will be given a user query.
@@ -91,18 +94,16 @@ openaiApiController.createResponse = async (req, res, next) => {
     array of objects: ${jsonGoogleResponse}
     user query: ${gptResponse}
     `;
-    console.log('gptResponse', gptResponse);
+    // console.log('gptResponse', gptResponse);
     const result = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       store: true,
       messages: [{ role: 'user', content: prompt }],
       temperature: 0.2,
     });
-    console.log(
-      'THIS IS GONNA BE AN ARRAY OF 3 OBJECTS',
-      result.choices[0].message.content
-    );
-    res.locals.gptFields = result.choices[0].message.content;
+    const gptFields = result.choices[0].message.content;
+    console.log('The value of gptFields is', gptFields)
+    res.locals.gptFields = gptFields;
     return next();
   } catch (error) {
     return res

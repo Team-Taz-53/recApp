@@ -34,6 +34,7 @@ router.post(
 router.post(
 	'/userMusicQuery',
 	userQueryController.parseQuery,
+	openaiApiController.userQuery,
 	googleApiController.getEvents,
 	openaiApiController.createMusicResponse,
 	(req, res) => {
@@ -44,6 +45,7 @@ router.post(
 router.post(
 	'/userFoodQuery',
 	userQueryController.parseQuery,
+	openaiApiController.userQuery,
 	googleApiController.getEvents,
 	openaiApiController.createFoodResponse,
 	(req, res) => {

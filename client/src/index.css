@@ -1,58 +1,133 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ************** CSS DEFAULT RESET ************************ */
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* 2. Remove default margin */
+* {
+  margin: 0;
 }
 
 body {
-  margin: 0;
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+
+/* ************** BASE STYLING ************************ */
+@import "tailwindcss";
+:root {
+  --primary-color: #242424;
+  --secondary-color: red;
+
+  --text-color:#ffffff;
+  --container-padding: 3rem;
+  --l-height: 1.5;
+  --f-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --btn-bg: #535bf2;
+  --btn-hover: #8286d6;
+}
+
+.container{
+  height: 100vh;
+  width: 100%;
+  padding: 3rem;
+  margin: auto;
+}
+
+/* ************** FORM SECTION ************************ */
+.form-section{
+  padding: 3rem 0;
+  width: 100%;
   display: flex;
+  justify-content: flex-end;
+}
+.form{
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.input{
+  width: 100%;
+  margin-bottom: 1rem;
+}
+/* ************** CARDS SECTION ************************ */
+/* Container for cards using grid */ 
+.card-grid{
+	display: grid;
+  gap: .5rem;
+	/* accomodate any number of cards on a row to 300px and when the screen is small stack */
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	/* adjust the height of all cards based on their own content.  */ 
+	align-items: flex-start;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.card {
+  position: relative;
+  padding: 1rem;
+  width: 300px;
+  height: 250px;
+  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
+  border-radius: 0.9rem;
+  background-color: var(--red-card);
+  color: var(--text);
   cursor: pointer;
-  transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+.card-music, .card-events, .card-food {
+  border-radius: 0.9rem;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.card-music{
+  background-color: red;
+  border-radius: 0.9rem;
 }
+.card-events{
+  background-color: blue;
+  border-radius: 0.9rem;
+}
+.card-food{
+  background-color: yellow;
+  border-radius: 0.9rem;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

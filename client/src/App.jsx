@@ -1,33 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { Button } from './components/Button'
+import {Input} from './components/Input'
+import { Card } from './components/Card'
 function App() {
-  const [count, setCount] = useState(0)
+  //get the value of the query from the query input
+  const [queryValue, setQueryValue]= useState('')
 
+  //get the value of the query from the query input
+  const [locationValue, setlocationValue]= useState('')
+
+  //function fired off by the button
+const func=()=>{
+  return alert("working")
+}
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='container'>
+        <div className="form-section">
+        <div className="form">
+        <Input placeholder="Enter mood..." setValue={setQueryValue}/>
+        <Input placeholder="Zip Code..." setValue={setlocationValue}/>
+        <Button label="click" onClick={func}/>
+        </div>
+        </div>
+       <div className="card-section">
+       <div className="card-grid">
+          <Card className="card-music"/>
+          <Card className="card-food"/>
+          <Card className="card-events"/>
+        </div>
+       </div>
+        <p>{queryValue}</p>
+        <p>{locationValue}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

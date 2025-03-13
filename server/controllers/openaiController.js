@@ -114,6 +114,7 @@ openaiApiController.createResponse = async (req, res, next) => {
 openaiApiController.createMusicResponse = async (req, res, next) => {
 	try {
 		const { googleResponse, gptResponse } = res.locals;
+    const jsonGoogleResponse = JSON.stringify(googleResponse);
 		const prompt = `
 	You are an expert at using the Google Places API. 
     You are an expert at recommending activities involving music.
@@ -133,7 +134,7 @@ openaiApiController.createMusicResponse = async (req, res, next) => {
     Your response must be an array of objects.
     Your response must maintain the same format that you were given, and leave the top 3 objects within the array that best align with the user query.
     The keys in your response should not be in quotes, example: places.rating: 4.5
-    array of objects: ${googleResponse}
+    array of objects: ${jsonGoogleResponse}
     user query: ${gptResponse}
     `;
 		const result = await openai.chat.completions.create({
@@ -142,7 +143,7 @@ openaiApiController.createMusicResponse = async (req, res, next) => {
 			messages: [{ role: 'user', content: prompt }],
 			temperature: 0.2,
 		});
-		res.locals.gptMusicFields = result.choices[0].messages.content;
+		res.locals.gptMusicFields = result.choices[0].message.content;
 		return next();
 	} catch (error) {
 		return res
@@ -154,16 +155,17 @@ openaiApiController.createMusicResponse = async (req, res, next) => {
 openaiApiController.createFoodResponse = async (req, res, next) => {
 	try {
 		const { googleResponse, gptResponse } = res.locals;
+    const jsonGoogleResponse = JSON.stringify(googleResponse);
 		const prompt = `
-	You are an expert at using the Google Places API. 
+    You are an expert at using the Google Places API. 
     You are an expert at recommending restaurants.
     You will be given an array of objects.
     These objects will contain fields such as:
-
+    
     places.displayName,
     places.formattedAddress,
     places.priceLevel,
-   	places.rating,
+    places.rating,
     places.types,
     places.googleMapsUri
     
@@ -173,16 +175,16 @@ openaiApiController.createFoodResponse = async (req, res, next) => {
     Your response must be an array of objects.
     Your response must maintain the same format that you were given, and leave the top 3 objects within the array that best align with the user query.
     The keys in your response should not be in quotes, example: places.rating: 4.5
-    array of objects: ${googleResponse}
+    array of objects: ${jsonGoogleResponse}
     user query: ${gptResponse}
     `;
 		const result = await openai.chat.completions.create({
-			model: `gpt-4o-mini`,
+      model: `gpt-4o-mini`,
 			store: true,
 			messages: [{ role: 'user', content: prompt }],
 			temperature: 0.2,
 		});
-		res.locals.gptFoodFields = result.choices[0].messages.content;
+		res.locals.gptFoodFields = result.choices[0].message.content;
 		return next();
 	} catch (error) {
 		return res

@@ -18,9 +18,9 @@ mongoose
 const Schema = mongoose.Schema;
 
 const userInfo = new Schema({
-    username: String,
-    password: String,
-    location: String,
+    username: {type: String, required:true},
+    password: {type: String, required:true},
+    location: {type: String, required:true},
     preferences: [{
         likedOrNot: String,
         placeName: String

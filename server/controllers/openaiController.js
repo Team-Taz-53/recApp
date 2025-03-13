@@ -76,7 +76,7 @@ openaiApiController.createResponse = async (req, res, next) => {
     googleMapsUri: 'https://maps.google.com/?cid=12957464324064300201',
     priceLevel: 'PRICE_LEVEL_INEXPENSIVE',
     displayName: { text: 'Gnarly Barley', languageCode: 'en' }
-    photoUrl: 'https://places.googleapis.com/v1/places/ChIJH5pPk-h854gRqUymsSYp0rM/photos/AUy1YQ2czxuxUI8GqmIheck3OdRwSTum9ghTQDRIUB4JLfomnkcRwh5vN14UU1-9lLA-6h4nS_CKIHge4DQa6xU1JCQgYxCdNEJR59k0nntF3aC9A37wbmmW39fhbJ9QmRzB3HLCzOSihHPU5xtGqNVIedaUqoffHW6dldPhpbkkO1fWnLD1QF0vXRaIsnigkroj1eJ11BWoVzYh8TkbiWStL9FffXHM16shuS5z41m69QIwSIyIFrQXnn8KM-7rZ-MSPgz4UtbstBEQEyeE1QaRV2XHOe8QAX3EHdTw5o3mu5CR1Q/media?maxWidthPx=400&key=AIzaSyBDxekdMhxPFM2nszecl3NjIPGFEXO9uVQ'
+    photoUrl: 'https://places.googleapis.com/v1/places/ChIJH5pPk-h854gRqUymsSYp0rM/photos/
     }
   ]
   You will be given a user query.
@@ -102,7 +102,7 @@ openaiApiController.createResponse = async (req, res, next) => {
       temperature: 0.2,
     });
     const gptFields = result.choices[0].message.content;
-    console.log('The value of gptFields is', gptFields)
+    console.log('The value of gptFields is', gptFields);
     res.locals.gptFields = gptFields;
     return next();
   } catch (error) {

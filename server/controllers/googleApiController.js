@@ -5,9 +5,9 @@ const googleApiController = {};
 googleApiController.getEvents = async (req, res, next) => {
   try {
     const { gptResponse } = res.locals;
-
     const url = 'https://places.googleapis.com/v1/places:searchText';
 
+    // console.time(googleApiController.getEvents)
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -19,9 +19,10 @@ googleApiController.getEvents = async (req, res, next) => {
     });
 
     const data = await response.json();
-
+    // console.timeEnd(googleApiController.getEvents)
     if (!data.places) {
-      return res.status(404).json({ message: 'No places found' });
+      // return res.status(200).json({ message: 'No places found' });
+      data.places = [];
     }
     data.places.map((place) => {
       if (place.photos && place.photos.length > 0) {

@@ -32,12 +32,16 @@ const listOfSuggestions = () => {
 
   return suggestions.map((suggestion, index) => (
     <div key={index} className='suggestion-card'>
-      <img src="https://placehold.co/600x400" alt="Logo" />;
-      <div className="content-col">
+     <div className="suggestion-image">
+     <img src={suggestions[index].photoUrl} alt="image" />
+     </div>
+      <div className="suggestion-content">
+        <div className="content-text">
         <h3>{suggestions[index].displayName.text}</h3>
-        <p>{suggestions[index].formattedAddress}</p>
-        <p>{suggestions[index].rating}</p>
-        <a href={suggestions[index].googleMapsUri}>More</a>
+        <p className='address'>{suggestions[index].formattedAddress}</p>
+        <p><span>rating:</span> {suggestions[index].rating}</p>
+        </div>
+        <a className='suggestion-info' href={suggestions[index].googleMapsUri} target='_blank'>More</a>
       </div>
     </div>
   ));

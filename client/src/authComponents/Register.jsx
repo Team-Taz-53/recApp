@@ -41,9 +41,11 @@ const Register = () => {
     }
   };
   return (
-    <div>
-      <h1>Register</h1>
-      <div className="inputs">
+   <div className="registerContainer">
+     <div className="registerForm">
+      <h2>Register</h2>
+  <div className="registerInputContainer">
+  <div className="inputs">
         <label className="label" htmlFor="username">
           Username
         </label>
@@ -75,7 +77,8 @@ const Register = () => {
           onChange={(e) => setLocation(e.target.value)}
         />
       </div>
-      <div className="card">
+  </div>
+      <div className="registerBtnContainer">
         {/* onclick, this should update the refs  */}
         <button
           onClick={(e) => {
@@ -87,6 +90,7 @@ const Register = () => {
         </button>
       </div>
     </div>
+   </div>
   );
 };
 

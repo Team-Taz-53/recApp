@@ -7,8 +7,17 @@ preferenceController.likeOrDislike = async () => {
   const username = "username";
   const nameOfPlace = "McDonalds";
   const types = ["restaurant", "food", "customer service"];
+  const update = {};
 
-  const updateUser = await User.findOneAndUpdate({})
+  if(rating === "like") {
+    
+  } else if (rating === "dislike") {
+
+  } else if (rating === "neutral") {
+
+  }
+
+  const updateUser = await User.findOneAndUpdate({ user }, update, { upsert: true, new: true })
 };
 
 module.exports = preferenceController;

@@ -26,9 +26,6 @@ const Register = () => {
         }),
       });
       if (response.ok) {
-        console.log("username: ", username);
-        console.log("password: ", password);
-        console.log("location: ", location);
         console.log("You are logged in");
         navigate("/dashboard", {
           state: { username: `${username}` },

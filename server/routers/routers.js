@@ -6,6 +6,7 @@ const googleApiController = require("../controllers/googleApiController");
 const userQueryController = require("../controllers/userQueryController");
 const openaiApiController = require("../controllers/openaiController");
 const authenticationController = require("../controllers/authenticationController")
+const preferenceController = require("../controllers/preferenceController")
 
 // //post request to handle logins -> tested and works
 router.post('/login', authenticationController.login, (req, res) => {
@@ -27,7 +28,7 @@ router.post(
 	googleApiController.getEvents,
 	openaiApiController.createResponse,
 	(req, res) => {
-		return res.status(200).send(res.locals.gptFields);
+		return res.status(200).send(res.locals.filteredRecs);
 	}
 );
 
@@ -52,5 +53,9 @@ router.post(
 		return res.status(200).send(res.locals.gptFoodFields);
 	}
 );
+
+router.post('/preference',(req, res) => {
+	return res.status(200).send(res.locals.gptFoodFields);
+})
 //Export the router---------------------------
 module.exports = router;

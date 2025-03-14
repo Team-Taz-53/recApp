@@ -25,11 +25,10 @@ function App() {
   const data = await response.json();
   setSuggestion(data)
 }
-console.log(suggestions)
+console.log("suggestions: ", suggestions)
 
 //Function to display AI suggestions
 const listOfSuggestions = () => {
-
   return suggestions.map((suggestion, index) => (
     <div key={index} className='suggestion-card'>
      <div className="suggestion-image">

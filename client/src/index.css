@@ -1,38 +1,30 @@
-
-/* ************** CSS DEFAULT RESET ************************ */
 /* 1. Use a more-intuitive box-sizing model */
 *, *::before, *::after {
   box-sizing: border-box;
 }
-
 /* 2. Remove default margin */
 * {
   margin: 0;
 }
-
 body {
   /* 3. Add accessible line-height */
   line-height: 1.5;
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
 }
-
 /* 5. Improve media defaults */
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
-
 /* 6. Inherit fonts for form controls */
 input, button, textarea, select {
   font: inherit;
 }
-
 /* 7. Avoid text overflows */
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
-
 /* 8. Improve line wrapping */
 p {
   text-wrap: pretty;
@@ -40,28 +32,25 @@ p {
 h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
-
 /*
   9. Create a root stacking context
 */
 #root, #__next {
   isolation: isolate;
+  width: 100%;
+  margin: 0;
 }
-
-
 /* ************** BASE STYLING ************************ */
 @import "tailwindcss";
 :root {
   --primary-color: #242424;
   --secondary-color: red;
-
   --text-color:#ffffff;
   --container-padding: 3rem;
   --l-height: 1.5;
   --f-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  --btn-bg: #535bf2;
-  --btn-hover: #8286d6;
+  --btn-bg: #535BF2;
+  --btn-hover: #8286D6;
 }
 img{
   width: 100%;
@@ -87,7 +76,6 @@ main{
   padding: 3rem;
   margin: auto;
 }
-
 /* ************** FORM SECTION ************************ */
 .form-section{
   padding: 3rem 4rem 0 0;
@@ -109,23 +97,21 @@ main{
 .card-section{
   padding: 3rem 3rem;
 }
-/* Container for cards using grid */ 
+/* Container for cards using grid */
 .card-grid{
-	display: grid;
+  display: grid;
   gap: .5rem;
-	/* accomodate any number of cards on a row to 300px and when the screen is small stack */
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	/* adjust the height of all cards based on their own content.  */ 
-	align-items: flex-start;
+  /* accomodate any number of cards on a row to 300px and when the screen is small stack */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* adjust the height of all cards based on their own content.  */
+  align-items: flex-start;
   place-items: center;
 }
-
-
 .card {
   position: relative;
   width: 300px;
   height: 250px;
-  box-shadow: 
+  box-shadow:
   0 10px 15px rgba(0, 0, 0, 0.3),  /* deep shadow */
     0 4px 6px rgba(0, 0, 0, 0.2),    /* closer shadow */
     0 1px 3px rgba(255, 255, 255, 0.1); /* faint top light for 3D effect */
@@ -161,6 +147,8 @@ main{
   height: 100%;
   width: 100%;
   position: absolute;
+  right: 0;
+  top: 0;
   background-color: rgba(20, 3, 26, 0.6);
   border-radius: 0.9rem;
   color: white;
@@ -168,20 +156,17 @@ main{
   font-weight: 700;
   letter-spacing: 2px;
 }
-
 /* ************** SUGGESTION SECTION ************************ */
-
 .suggestion-section{
   padding-top: 2rem;
   display: grid;
   gap: .5rem;
-	/* accomodate any number of cards on a row to 300px and when the screen is small stack */
+  /* accomodate any number of cards on a row to 300px and when the screen is small stack */
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-	/* adjust the height of all cards based on their own content.  */ 
-	align-items: flex-start;
-  place-items: center; 
+  /* adjust the height of all cards based on their own content.  */
+  align-items: flex-start;
+  place-items: center;
 }
-
 /* Each individual card */
 .suggestion-card {
   position: relative;
@@ -225,7 +210,6 @@ main{
   z-index: 2;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
-
 .suggestion-content {
   margin-left: 120px; /* Pushes content to the right of the floating image */
   padding: 1.5rem;
@@ -261,28 +245,71 @@ transition: 0.3s ease;
 .content-col{
   padding: .6rem;
 }
-
 .suggestion-info:hover{
   color: white;
   border-radius: 5px;
-  border: solid #ffffff 1px;
+  border: solid #FFFFFF 1px;
   padding: .2rem .9rem;
   cursor: pointer;
   }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* ************** LOGIN / REGISTRATION ************************ */
+.loginContainer, .registerContainer{
+  background: linear-gradient(
+    to bottom right,  rgba(9, 41, 90, 0.9),rgba(101, 47, 142, 0.9),rgba(212, 63, 180, 0.9),rgba(17, 14, 15, 0.9)
+  ), url("./assets/background6.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+    width: 100%;
+    padding: 3rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.loginForm, .registerForm{
+  background: rgba(255, 255, 255, 0.261);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 6px );
+  -webkit-backdrop-filter: blur( 6px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  height: 17rem;
+  padding: 1rem;
+}
+.loginForm h2{
+  margin: 1rem 0;
+}
+.loginForm input{
+  padding: 0 1rem;
+  margin: .6rem 1rem;
+  border-radius: 5px;
+  border: #727272 1px solid;
+}
+.loginInputContainer, .registerInputContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.registerForm h2{
+  margin: 1rem 0;
+}
+.registerForm input{
+  padding: 0 1rem;
+  margin: .6rem 1rem;
+  border-radius: 5px;
+  border: #727272 1px solid;
+}
+.registerBtnContainer, .loginBtnContainer{
+  padding-top: 1.4rem;
+}
+button{
+  cursor: pointer;
+}
+button:hover{
+  color: white;
+}
 @media only screen and (max-width: 800px) {
   .form-section{
     padding: 3rem 0;

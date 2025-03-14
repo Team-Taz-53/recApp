@@ -33,7 +33,7 @@ router.post(
 );
 
 router.post(
-	'/userMusicQuery',
+	'/usermusicquery',
 	userQueryController.parseQuery,
 	openaiApiController.userQuery,
 	googleApiController.getEvents,
@@ -44,13 +44,24 @@ router.post(
 );
 
 router.post(
-	'/userFoodQuery',
+	'/userfoodquery',
 	userQueryController.parseQuery,
 	openaiApiController.userQuery,
 	googleApiController.getEvents,
 	openaiApiController.createFoodResponse,
 	(req, res) => {
-		return res.status(200).send(res.locals.gptFoodFields);
+		return res.status(200).send(res.locals.filteredFoodRecs);
+	}
+);
+
+router.post(
+	'/usereventsquery',
+	userQueryController.parseQuery,
+	openaiApiController.userQuery,
+	googleApiController.getEvents,
+	openaiApiController.createEventsResponse,
+	(req, res) => {
+		return res.status(200).send(res.locals.gptEventsFields);
 	}
 );
 

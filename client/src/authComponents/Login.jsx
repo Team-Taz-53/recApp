@@ -43,19 +43,34 @@ const Login = () => {
 
   return (
     <>
-      <h1>Log In</h1>
-      <div>
-        <label>Username</label>
-        <input type='text' placeholder ='Enter Username' onChange={(e) => setUsername(e.target.value)} />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type='text'placeholder ='Enter Password' onChange={(e) => setPassword(e.target.value)} />
-      </div>
-      <div>
-        <div>
-          <button onClick={loginRequest}>Login</button>
-          <button onClick={registerButtonClick}>Register</button>
+      <div className="loginContainer">
+        <div className="loginForm">
+          <h2>Log In</h2>
+          <div className="loginInputContainer">
+            <div>
+              <label>Username</label>
+              <input
+                type="text"
+                placeholder="Enter Username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Password</label>
+              <input
+                type="text"
+                placeholder="Enter Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
+          <div>
+            <div className="loginBtnContainer">
+              <button onClick={loginRequest}>Login </button>
+              <span> | </span>
+              <button onClick={registerButtonClick}> Register</button>
+            </div>
+          </div>
         </div>
       </div>
     </>

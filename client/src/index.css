@@ -46,6 +46,8 @@ h1, h2, h3, h4, h5, h6 {
 */
 #root, #__next {
   isolation: isolate;
+  width: 100%;
+  margin: 0;
 }
 
 
@@ -270,19 +272,65 @@ transition: 0.3s ease;
   cursor: pointer;
   }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* ************** LOGIN / REGISTRATION ************************ */
+.loginContainer, .registerContainer{
+  background: linear-gradient(
+    to bottom right,  rgba(9, 41, 90, 0.9),rgba(101, 47, 142, 0.9),rgba(212, 63, 180, 0.9),rgba(17, 14, 15, 0.9)
+  ), url("./assets/background6.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+    width: 100%;
+    padding: 3rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginForm, .registerForm{
+  background: rgba(255, 255, 255, 0.261);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 6px );
+  -webkit-backdrop-filter: blur( 6px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  height: 17rem;
+  padding: 1rem;
+}
+.loginForm h2{
+  margin: 1rem 0;
+}
+.loginForm input{
+  padding: 0 1rem;
+  margin: .6rem 1rem;
+  border-radius: 5px;
+  border: #727272 1px solid;
+}
+.loginInputContainer, .registerInputContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.registerForm h2{
+  margin: 1rem 0;
+}
+.registerForm input{
+  padding: 0 1rem;
+  margin: .6rem 1rem;
+  border-radius: 5px;
+  border: #727272 1px solid;
 }
 
+.registerBtnContainer, .loginBtnContainer{
+  padding-top: 1.4rem;
+}
+button{
+  cursor: pointer;
+} 
+button:hover{
+  color: white;
+}
 @media only screen and (max-width: 800px) {
   .form-section{
     padding: 3rem 0;

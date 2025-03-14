@@ -68,12 +68,18 @@ img{
 }
 main{
   background: linear-gradient(
-    to right, rgba(2,80,197, 0.2),rgba(212,63,141,0.8)
-  ), url("./assets/background2.jpg");
+    to bottom right,  rgba(9, 41, 90, 0.9),rgba(101, 47, 142, 0.9),rgba(212, 63, 180, 0.9),rgba(17, 14, 15, 0.9)
+  ), url("./assets/background6.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+}
+.header{
+  color:var(--text-color);
+  font-size: 2rem;
+  font-weight: 700;
+  padding-top: 3rem;
 }
 .container{
   height: 100%;
@@ -84,7 +90,7 @@ main{
 
 /* ************** FORM SECTION ************************ */
 .form-section{
-  padding: 3rem 0;
+  padding: 3rem 4rem 0 0;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -101,7 +107,7 @@ main{
 }
 /* ************** CARDS SECTION ************************ */
 .card-section{
-  padding: 3rem 0;
+  padding: 3rem 3rem;
 }
 /* Container for cards using grid */ 
 .card-grid{
@@ -166,6 +172,7 @@ main{
 /* ************** SUGGESTION SECTION ************************ */
 
 .suggestion-section{
+  padding-top: 2rem;
   display: grid;
   gap: .5rem;
 	/* accomodate any number of cards on a row to 300px and when the screen is small stack */
@@ -273,5 +280,17 @@ transition: 0.3s ease;
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .form-section{
+    padding: 3rem 0;
+  }
+  .card-section{
+    padding: 3rem 0;
+  }
+  .header{
+    text-align: center;
   }
 }

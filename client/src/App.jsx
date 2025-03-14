@@ -54,9 +54,12 @@ const listOfSuggestions = () => {
         <div className="form">
         <Input placeholder="Enter mood..." setValue={setQueryValue}/>
         <Input placeholder="Zip Code..." setValue={setlocationValue}/>
-        <Button label="click" onClick={()=>handleClickQuery()}/>
+        <Button label="ASK" onClick={()=>handleClickQuery()}/>
         </div>
         </section>
+        <div className="header">
+          <h2>Explore</h2>
+        </div>
        <section className="card-section">
        <div className="card-grid">
           <Card className="card-music" label="MUSIC"/>
@@ -64,6 +67,9 @@ const listOfSuggestions = () => {
           <Card className="card-events"label="EVENTS"/>
         </div>
        </section>
+       <div className="header">
+          <h2>Suggestions for You</h2>
+        </div>
         <section className='suggestion-section'>
       {listOfSuggestions()}
         </section>

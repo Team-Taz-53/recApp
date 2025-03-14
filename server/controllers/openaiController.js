@@ -124,6 +124,7 @@ openaiApiController.createResponse = async (req, res, next) => {
     //! @index 1, val = 12
     //! gptFields.places[12]
     //! newList = [gptFields.places[0], gptFields.places[3], gptFields.places[12]]
+
     // let filteredRecs2 = [];
     // for(let i = 0; i < indices.length; i++) {
     //   console.log('looping looping')
@@ -143,12 +144,24 @@ openaiApiController.createResponse = async (req, res, next) => {
       .json({ message: 'Internal Server Error', error: error.message });
   }
 };
+
+openaiApiController.likeOrDislike = async (req, res, next) => {
+  try {
+    
+    return next();
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: 'Internal Server Error', error: error.message });
+  }
+}
+
 openaiApiController.createMusicResponse = async (req, res, next) => {
 	try {
 		const { googleResponse, gptResponse } = res.locals;
     const jsonGoogleResponse = JSON.stringify(googleResponse);
 		const prompt = `
-	You are an expert at using the Google Places API. 
+	  You are an expert at using the Google Places API. 
     You are an expert at recommending activities involving music.
     You will be given an array of objects.
     These objects will contain fields such as:
@@ -179,7 +192,6 @@ openaiApiController.createMusicResponse = async (req, res, next) => {
 			temperature: 0.2,
 		});
 		res.locals.gptMusicFields = result.choices[0].message.content;
-    //TODO add stuff to handle new response type (indexes)
 		return next();
 	} catch (error) {
 		return res

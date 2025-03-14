@@ -50,7 +50,7 @@ const Login = () => {
       </div>
       <div>
         <label>Password</label>
-        <input type='text'placeholder ='Enter Password' onChange={(e) => setPassword(e.target.value)} />
+        <input type='password' placeholder ='Enter Password' onChange={(e) => setPassword(e.target.value)} />
       </div>
       <div>
         <div>
